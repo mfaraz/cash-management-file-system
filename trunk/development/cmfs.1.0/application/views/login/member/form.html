@@ -1,0 +1,34 @@
+<div class="loginBox-body">
+    {if $login_st|default:'' eq ''}
+    <p><img src="{$BASEURL}resource/doc/images/icon/notification-icon.png" alt="" />You are enter restricted area, <strong>Please Login</strong> First to acces this page !!</p>
+    <form action="{$config->site_url('login/memberlogin/login_process')}" method="post">
+        <input type="text" name="username" maxlength="30" />
+        <input type="password" name="pass" maxlength="30" />
+        <input class="button" type="submit" value="" name="save[login]" />
+        <div class="clear"></div>
+    </form>
+    {elseif $login_st|default:'' eq 'error'}
+    <p><img src="{$BASEURL}resource/doc/images/icon/notification-icon.png" alt="" /><strong>Username or password</strong> not found, Please Try Again or contact your administrator</p>
+    <form action="{$config->site_url('login/memberlogin/login_process')}" method="post">
+        <input type="text" name="username" maxlength="30" />
+        <input type="password" name="pass" maxlength="30" />
+        <input class="button" type="submit" value="" name="save[login]" />
+        <div class="clear"></div>
+    </form>
+    {elseif $login_st|default:'' eq 'locked'}
+    <p><img src="{$BASEURL}resource/doc/images/icon/notification-icon.png" alt="" />You account has been <strong>locked</strong>, Please contact your administrator to activate your account</p>
+    <form action="{$config->site_url('login/memberlogin/login_process')}" method="post">
+        <input type="text" name="username" maxlength="30" />
+        <input type="password" name="pass" maxlength="30" />
+        <input class="button" type="submit" value="" name="save[login]" />
+        <div class="clear"></div>
+    </form>
+    {elseif $login_st|default:'' eq 'still'}
+    <p>
+        <img src="{$BASEURL}resource/doc/images/icon/notification-icon.png" alt="" /> You are still login. 
+        Click <a href="{$config->site_url('login/memberlogin/logout_process')}"><strong>logout</strong></a> to end your session or back to
+        Click <a href="{$config->site_url('home/memberwelcome/')}"><strong style="color: #011B53;">dashboard</strong></a>
+    </p>
+    {/if}
+</div>
+<span class="loginBox-body-footer"></span>

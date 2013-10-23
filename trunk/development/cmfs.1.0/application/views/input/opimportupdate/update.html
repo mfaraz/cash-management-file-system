@@ -1,0 +1,93 @@
+<div class="head-content">
+    <h3>Import Updates</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url({'input/opimportupdate'})}">Upload File</a></li>
+        <li><a href="{$config->site_url({'input/opimportupdate/update'})}" class="active">Review File</a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('input/opimportupdate/process_update')}" method="post">
+    <input type="hidden" value="{$rs_input.1|default:''}" name="input_id"/>
+    <input type="hidden" value="{$file_name|default:''}" name="file_name"/>
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="4">Import Data</th>
+        </tr>
+        <tr>
+            <td width="25%">Versi Format Input<br /> <em>Input Versions</em></td>
+            <td width="25%">{$rs_input.2|default:''}</td>
+            <td width="25%">Jenis Format <br /> <em>Format Type</em></td>
+            <td width="25%">{$rs_input.3|default:''}</td>
+        </tr>
+        <tr>
+            <td>Jenis File  <br /> <em>File Type</em></td>
+            <td>{$rs_input.4|default:''}</td>
+            <td>Baris Mulai<br /> <em>Start Row</em></td>
+            <td>{$rs_input.5|default:''}</td>
+        </tr>
+        <tr>
+            <td>Pemisah<br /> <em>Delimiter</em></td>
+            <td>{$rs_input.6|default:''}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>Versi Format Output<br /> <em>Output Versions</em></td>
+            <td>
+                <select name="output_id">
+                    <option value=''>--- Pilih Format Output ---</option>
+                    {foreach from=$input_format item=format}
+                    <option value="{$format.output_id}" {if {$rs_input.1|default:''} == $format.output_id}selected="selected"{/if}>{$format.output_version}</option>
+                    {foreachelse}
+                    <option>Format Output tidak di temukan</option>
+                    {/foreach}
+                </select>
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <table class="table-input" width="100%">
+        <tr>
+            <th width="50%">Baris Ke</th>
+            <th width="50%">Jumlah Kolom</th>
+        </tr>
+        {foreach from=$rows key=no item=data}
+        <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+            <td>{$data.1}</td>
+            <td>{$data.2}</td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="2">Empty file</td>
+        </tr>
+        {/foreach}
+    </table>
+    <table class="table-input" width="100%">
+        <tr>
+            <th width="10%">No</th>
+            <th width="40%">Field Name</th>
+            <th width="50%">Field Description</th>
+        </tr>
+        {foreach from=$fields key=no item=field}
+        <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+            <td>{$field.0|default:''}</td>
+            <td>{$field.1|default:''}</td>
+            <td>{$field.2|default:''}</td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="3">Empty file</td>
+        </tr>
+        {/foreach}
+        <tr>
+            <td colspan="3"><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+</form>

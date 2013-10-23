@@ -1,0 +1,28 @@
+<div class="head-content">
+    <h3>Import Updates</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url({'output/opimportupdate'})}" class="active">Upload File</a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('output/opimportupdate/process_upload')}" method="post" enctype="multipart/form-data">
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Upload Form</th>
+        </tr>
+        <tr>
+            <td width="25%">Cari Berkas<br /><em>Upload File</em> </td>
+            <td width="75%"><input type="file" name="upload_file" size="30" /> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Upload" /> </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,105 @@
+<div class="head-content">
+    <h3>Daftar Format Output</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url({'output/opoutputversions'})}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/edit/'|cat:$detail.output_id|default:''})}">Edit Versi</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/rows/'|cat:$detail.output_id|default:''})}">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url({'output/opoutputversions/upload/'|cat:$detail.output_id|default:''})}">Upload File</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/manage/'|cat:$detail.output_id|default:''})}" class="active">Pengaturan Field</a></li>
+        {if $preview_status eq 'true'}
+        <li><a href="{$config->site_url({'output/opoutputversions/review/'|cat:$detail.output_id|default:''})}">Format Review</a></li>
+        {/if}
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="table-info-box">
+    <h3>Detail Format</h3>
+    <table class="table-info" width="100%">
+        <tr>
+            <td width="25%">Versi Format Output<br /><em>Output Versions</em> </td>
+            <td width="25%"><b>{$detail.output_version|default:''}</b></td>
+            <td width="25%">Jenis File <br /><em>File Type</em> </td>
+            <td width="25%"><b>{$detail.output_file_type|default:''}</b></td>
+        </tr>
+        <tr>
+            <td>Jenis Format <br /><em>Format Type</em> </td>
+            <td colspan="3"><b>{$detail.output_format_type|default:''}</b></td>
+        </tr>
+    </table>
+</div>
+<div class="clear"></div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('output/opoutputversions/process_manage')}" method="post">
+    <input type="hidden" value="{$detail.output_id|default:''}" name="output_id"/>
+    <table class="table-view" width="100%">
+        <tr>
+            <th width="5%">No</th>
+            <th width="15%">Field Name / Read Value</th>
+            <th width="25%">Field Description</th>
+            <th width="10%">Field Mandatory</th>
+            <th width="10%">Field Length</th>
+            <th width="10%">Field Type</th>
+            <th width="12%">Field Special</th>
+            <th width="13%">Default Value</th>
+        </tr>
+        {foreach from=$rs_data key=no item=data}
+        <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+            <td>{$no}.</td>
+            <td align="center">
+                <input type="hidden" name="no[{$no}]" value="{$no}" />
+                <input type="text" name="field_name[{$no}]" value="{$data.name|default:''}" maxlength="45" size="15" />
+            </td>
+            <td align="center">
+                <input type="text" name="field_desc[{$no}]" value="{$data.desc|default:''}" maxlength="255" size="30" />
+            </td>
+            <td align="center">
+                <select name="field_required[{$no}]">
+                    <option value="no" {if {$data.required|default:''} == "no"}selected="selected"{/if}>No</option>
+                    <option value="yes" {if {$data.required|default:''} == "yes"}selected="selected"{/if}>Yes</option>
+                </select>
+            </td>
+            <td align="center">
+                <input type="text" name="field_length[{$no}]" value="{$data.length|default:''}" maxlength="5" size="5" style="text-align: right;" />
+            </td>
+            <td align="center">
+                <select name="field_type[{$no}]">
+                    <option value="text" {if {$data.type|default:''} == "text"}selected="selected"{/if}>Text</option>
+                    <option value="numeric" {if {$data.type|default:''} == "numeric"}selected="selected"{/if}>Numeric</option>
+                </select>
+            </td>
+            <td align="center">
+                <select name="special_cd[{$no}]">
+                    {foreach from=$rs_special_fl item=special}
+                    <option value="{$special.special_cd}" {if {$data.special_cd|default:''} == $special.special_cd}selected="selected"{/if}>{$special.special_nm}</option>
+                    {/foreach}
+                </select>
+            </td>
+            <td align="center">
+                <input type="text" name="field_default_value[{$no}]" value="{$data.default_value}" maxlength="255" size="10" />
+            </td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="8">Empty file</td>
+        </tr>
+        {/foreach}
+        <tr>
+            <td colspan="4">
+                <input type="submit" name="action" value="Save" />
+            </td>
+            <td align="right" colspan="4">
+                <input type="submit" name="action" value="Reset" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+

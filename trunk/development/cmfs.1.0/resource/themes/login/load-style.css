@@ -1,0 +1,201 @@
+/* CSS Document */
+/* Create by Chow Jan 2011
+
+/* common	---------------------------------------------------------------- */
+
+.common-login {
+    margin: 0;
+    padding: 0;
+    font-family: helvetica neue, arial;
+    background-repeat: repeat;
+}
+
+.clear {
+    clear: both;
+}
+
+.footer {
+    margin: 0;
+    padding: 10px 0;
+    background-repeat: repeat;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer p{
+    margin: 0;
+    padding: 0 20px;
+    line-height: 18px;
+    color: #FFF;
+    font-size: 11px;
+    text-align: center;
+    font-family: arial;
+    position: relative;
+}
+
+/* content	---------------------------------------------------------------- */
+
+.background {
+    background-size: cover;
+    background-position: 50% 50%;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/* sidebar	---------------------------------------------------------------- */
+
+
+
+/* table	---------------------------------------------------------------- */
+
+
+
+/* element	---------------------------------------------------------------- */
+
+.loginWrapper {
+    margin: 50px auto;
+    padding: 0;
+    width: 312px;
+    overflow: hidden;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    font-family: Arial;
+}
+.loginWrapper .login-logo {
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+.loginBox-head {
+    height: 31px;
+    margin: 0;
+    padding: 10px 6px 0;
+    background-image: url("img/loginBox-head-bg.png");
+    background-repeat: no-repeat;
+}
+
+.loginBox-head h1 {
+    margin: 0;
+    padding: 4px 15px 0 15px;
+    color: #FFF;
+    font-size: 14px;
+    font-family: helvetica neue, arial;
+}
+
+.loginBox-body {
+    margin: 0 auto;
+    padding: 10px 6px;
+    color: #095083;
+    font-size: 11px;
+    overflow: hidden;
+    background-image: url("img/loginBox-body-bg.png");
+    background-repeat: repeat-y;
+}
+
+.loginBox-body form {
+    margin: 0;
+    padding: 10px 16px 0;
+    clear: both;
+}
+
+.loginBox-body label {
+    margin: 0;
+    padding: 3px 0;
+    display: block;
+    clear: both;
+    float: left;
+    font-weight: bold;
+    color: #095083;
+    width: 100px;
+}
+
+.loginBox-body p {
+    margin: 0 0 10px;
+    padding: 0 16px 10px;
+    border-bottom: 1px dotted #aaa;
+    color: #FFF;
+}
+
+.loginBox-body p img {
+    float: left;
+    margin: 0px 5px 5px 0px;
+    padding: 0px;
+}
+
+.loginBox-body a {
+    color: #FFF;
+    text-decoration: underline;
+}
+
+.loginBox-body a:hover {
+    color: #AAA;
+    text-decoration: none;
+}
+
+.loginBox-body strong {
+    color: #E33C0F;
+}
+
+.loginBox-body input[type=text],.loginBox-body input[type=password] {
+    height: 36px;
+    margin: 0 0 15px;
+    padding: 0 0 0 32px;
+    width: 234px;
+    display: block;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    background-image: url("img/input-bg.png");
+    background-repeat: no-repeat;
+    color: #FFF;
+}
+.loginBox-body input[type=text] {
+    background-position: 0 0;
+}
+.loginBox-body input[type=text]:active,.loginBox-body input[type=text]:focus {
+    background-position: 0 -72px;
+}
+
+.loginBox-body input[type=password] {
+    background-position: 0 -36px;
+}
+
+.loginBox-body input[type=password]:active,.loginBox-body input[type=password]:focus {
+    background-position: 0 -108px;
+}
+.button {
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    width: 266px;
+    display: block;
+    font-size: 13px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    background-image: url("img/input-bg.png");
+    background-repeat: no-repeat;
+    background-position: 0 -144px;
+    color: #FFF;
+    cursor: pointer;
+}
+.button:hover {
+    background-position: 0 -180px;
+}
+.button:active {
+    background-position: 0 -216px;
+}
+
+.loginBox-body-footer {
+    display: block;
+    background-image: url("img/loginBox-body-footer-bg.png");
+    background-repeat: no-repeat;
+    width: 312px;
+    height: 35px;
+}

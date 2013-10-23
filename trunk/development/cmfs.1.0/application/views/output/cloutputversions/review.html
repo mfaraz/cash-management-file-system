@@ -1,0 +1,47 @@
+<div class="head-content">
+    <h3>Format Output Review</h3>
+    <div class="clear"></div>
+</div>
+<div class="table-info-box">
+    <h3>Detail Format</h3>
+    <table class="table-info" width="100%">
+        <tr>
+            <td width="25%">Versi Format Output<br /><em>Output Versions</em> </td>
+            <td width="25%"><b>{$result.output_version|default:''}</b></td>
+            <td width="25%">Jenis File <br /><em>File Type</em> </td>
+            <td width="25%"><b>{$result.output_file_type|default:''}</b></td>
+        </tr>
+        <tr>
+            <td>Jenis Format <br /><em>Format Type</em> </td>
+            <td><b>{$result.output_format_type|default:''}</b></td>
+            <td>Pemisah <br /><em>Delimiter</em> </td>
+            <td><b>{$result.output_delimiter|default:''}</b></td>
+        </tr>
+    </table>
+</div>
+<div class="clear"></div>
+<table class="table-view" width="100%">
+    <tr>
+        <th width="5%">No</th>
+        <th width="20%">Field Name</th>
+        <th width="45%">Field Description</th>
+        <th width="10%">Field Required</th>
+        <th width="10%">Field Length</th>
+        <th width="10%">Field Default Value</th>
+    </tr>
+    {foreach from=$rs_list key=no item=result}
+    <tr {if ($no % 2) == 0}class="blink-row"{/if}>
+        <td align="center">{$no+1}.</td>
+        <td>{$result.field_name}</td>
+        <td>{$result.field_desc}</td>
+        <td align="center">{if {$result.field_required|default:''} == "no"}No{else}Yes{/if}</td>
+        <td align="center">{$result.field_length}</td>
+        <td align="center">{$result.field_default_value}</td>
+    </tr>
+    {foreachelse}
+    <tr>
+        <td colspan="6">Data not found</td>
+    </tr>
+    {/foreach}
+</table>
+

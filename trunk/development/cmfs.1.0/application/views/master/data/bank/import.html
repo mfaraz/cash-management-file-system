@@ -1,0 +1,31 @@
+<div class="head-content">
+    <h3>Data Bank</h3>
+    <div class="head-content-nav">
+        <ul>
+            {if $file_export eq 'show'}
+            <li><a href="{$config->site_url('master/bank/process_export')}"><img src="{$BASEURL}resource/doc/images/icon/export-icon.png" alt="" /> Export Data</a></li>
+            {/if}
+            <li><a href="#"  class="active"><img src="{$BASEURL}resource/doc/images/icon/import-icon.png" alt="" /> Import Data</a></li>
+            <li><a href="{$config->site_url('master/bank')}">List Data</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('master/bank/process_import')}" method="post" enctype="multipart/form-data">
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Import Data</th>
+        </tr>        
+        <tr>
+            <td width="25%">Berkas<br /><em>File</em></td>
+            <td width="75%"><input type="file" name="import_file" size="30"/> <em>* required</em></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Upload &amp Save" /> </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,67 @@
+<div class="head-content">
+    <h3>Tambah Format Input Baru</h3>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('input/opnewformat/process_create')}" method="post">
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Create Form</th>
+        </tr>
+        <tr>
+            <td width="25%">Versi Format Input<br /><em>Input Versions</em> </td>
+            <td width="75%">
+                <input type="text" name="input_version" value="{$result.input_version|default:''}" size="25" maxlength="30" /> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Jenis Format Input<br /><em>Format Type</em> </td>
+            <td>
+                <select name="input_format_type">
+                    <option value=""></option>
+                    <option value="Batch Upload" {if {$result.input_format_type|default:''} == "Batch Upload"}selected="selected"{/if}>Batch Upload</option>
+                    <option value="Single Mixed Upload" {if {$result.input_format_type|default:''} == "Single Mixed Upload"}selected="selected"{/if}>Single Mixed Upload</option>
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Jenis File Input<br /><em>File Type</em> </td>
+            <td>
+                <select name="input_file_type">
+                    <option value=""></option>
+                    <option value="txt" {if {$result.input_file_type|default:''} == "txt"}selected="selected"{/if}>Text</option>
+                    <option value="csv" {if {$result.input_file_type|default:''} == "csv"}selected="selected"{/if}>CSV</option>
+                    <option value="xls" {if {$result.input_file_type|default:''} == "xls"}selected="selected"{/if}>Excel 2003</option>
+                    <option value="xlsx" {if {$result.input_file_type|default:''} == "xlsx"}selected="selected"{/if}>Excel 2007</option>
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Versi Format Output <br /><em>Output Versions</em> </td>
+            <td>
+                <select name="output_id">
+                    <option value=""></option>
+                    {foreach from=$rs_output item=data}
+                    <option value="{$data.output_id}" {if {$result.output_id|default:''} == $data.output_id}selected="selected"{/if}>{$data.output_version}</option>
+                    {/foreach}
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Default?<br /><em>Default</em> </td>
+            <td>
+                <select name="default_status">
+                    <option value=""></option>
+                    <option value="yes" {if {$result.default_status|default:''} == "yes"}selected="selected"{/if}>Ya</option>
+                    <option value="no" {if {$result.default_status|default:''} == "no"}selected="selected"{/if}>Tidak</option>
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Save &amp Next" /> </td>
+        </tr>
+    </table>
+</form>

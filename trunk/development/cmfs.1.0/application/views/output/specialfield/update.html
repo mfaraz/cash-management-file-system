@@ -1,0 +1,40 @@
+<div class="head-content">
+    <h3>Special Field</h3>
+    <div class="head-content-nav">
+        <ul>
+            <li><a href="#" class="active" >Edit Data</a></li>
+            <li><a href="{$config->site_url({'output/specialfield/add'})}"><img src="{$BASEURL}resource/doc/images/icon/add-icon.png" alt="" />Add Data</a></li>
+            <li><a href="{$config->site_url({'output/specialfield'})}" >List Data</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$url_process}" method="post">
+    <input type="hidden" value="{$result.special_cd|default:''}" name="special_cd"/>
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Update Form</th>
+        </tr>
+        <tr>
+            <td>Nama<br /><em>Name</em> </td>
+            <td><input type="text" name="special_nm" maxlength="45" size="30" value="{$result.special_nm|default:''}" /> * <em>required</em> </td>
+        </tr>
+        <tr>
+            <td>Keterangan<br /><em>Description</em> </td>
+            <td><input type="text" name="special_desc" maxlength="255" size="45" value="{$result.special_desc|default:''}" /> * <em>required</em> </td>
+        </tr>
+        <tr>
+            <td>Urutan<br /><em>Order Number</em> </td>
+            <td><input type="text" name="order_num" maxlength="11" size="5" value="{$result.order_num|default:''}" /></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Save" /></td>
+        </tr>
+    </table>
+</form>
+
+

@@ -1,0 +1,30 @@
+<div class="head-content">
+    <h3>Daftar Format Output</h3>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('output/opoutputversions/process_delete')}" method="post">
+    <input type="hidden" name="output_id" value="{$result.output_id|default:''}"/>
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Hapus Format Output</th>
+        </tr>
+        <tr>
+            <td width="25%">Versi<br /><em>Versions</em> </td>
+            <td width="75%">{$result.output_version|default:''}</td>
+        </tr>
+        <tr>
+            <td>Jenis Format <br /><em>Format Type</em> </td>
+            <td>{$result.output_format_type|default:''}</td>
+        </tr>
+        <tr>
+            <td>Jenis File <br /><em>File Type</em> </td>
+            <td>{$result.output_file_type|default:''}</td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" name="save" value="Hapus" class="edit-button" /> </td>
+        </tr>
+    </table>
+</form>

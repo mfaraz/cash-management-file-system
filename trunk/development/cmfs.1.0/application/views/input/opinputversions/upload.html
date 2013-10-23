@@ -1,0 +1,70 @@
+<div class="head-content">
+    <h3>Daftar Format Input</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url('input/opinputversions')}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/edit/'|cat:$detail.input_id|default:'')}">Edit Versi</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/rows/'|cat:$detail.input_id|default:'')}">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url('input/opinputversions/upload/'|cat:$detail.input_id|default:'')}" class="active">Upload File</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/manage/'|cat:$detail.input_id|default:'')}">Pengaturan Field</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/mapping/'|cat:$detail.input_id|default:'')}">Pemetaan Field</a></li>
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="table-info-box">
+    <h3>Detail Format</h3>
+    <table class="table-info" width="100%">
+        <tr>
+            <td width="25%">Versi Format Input<br /><em>Input Versions</em> </td>
+            <td width="25%"><b>{$detail.input_version|default:''}</b></td>
+            <td width="25%">Versi Format Output<br /><em>Output Versions</em> </td>
+            <td width="25%"><b>{$detail.output_version|default:''}</b></td>
+        </tr>
+        <tr>
+            <td>Jenis Format <br /><em>Format Type</em> </td>
+            <td><b>{$detail.input_format_type|default:''}</b></td>
+            <td>Jenis File <br /><em>File Type</em> </td>
+            <td><b>{$detail.input_file_type|default:''}</b></td>
+        </tr>
+    </table>
+</div>
+<div class="clear"></div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('input/opinputversions/process_upload')}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="input_id" value="{$detail.input_id|default:''}" />
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Upload Form</th>
+        </tr>
+        <tr>
+            <td width="25%">Baris Mulai <br /><em>Start Row</em> </td>
+            <td width="75%"><input type="text" size="4" maxlength="4" name="input_row" value="{$result.input_row|default:$detail.input_row}" /> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td>Pemisah Data<br /><em>Delimiter</em> </td>
+            <td><input type="text" size="5" maxlength="10" name="input_delimiter" value="{$result.input_delimiter|default:$detail.input_delimiter}" /> * <em>text dan csv</em></td>
+        </tr>
+        <tr>
+            <td>Cari Berkas <br /><em>Upload File</em> </td>
+            <td><input type="file" name="input_file_path" size="30" /> * <em>required</em></td>
+        </tr>
+        {if $download eq 'true'}
+        <tr>
+            <td></td>
+            <td>
+                <a href="{$config->site_url('input/opinputversions/download_input/'|cat:$detail.input_id|default:'')}">{$detail.input_file_path|default:''}</a>
+            </td>
+        </tr>
+        {/if}
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Upload &amp Next" /> </td>
+        </tr>
+    </table>
+</form>
