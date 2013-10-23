@@ -1,0 +1,147 @@
+<div class="head-content">
+    <h3>Special Field</h3>
+    <div class="head-content-nav">
+            <ul>
+            <li><a href="#"  class="active">List Data</a></li>
+            </ul>
+        </div>
+        <div class="clear"></div>
+    </div>
+<div class="search-box">
+    <h3><a href="#" class="down">Search for type</a></h3>
+    <form action="{$config->site_url('output/specialfield/process_search')}" method="post">
+        <table class="table-search" width="100%">
+            <tr>
+                <th width="25%">Format Types</th>
+                <td width="75%">
+                    <select name="search_type">
+                        <option value="">-- all types --</option>
+                        <option value="Payment Upload" {if {$search.special_field_format_type|default:''} == "Payment Upload"}selected="selected"{/if}>Payment Upload</option>
+                        <option value="Payroll Upload" {if {$search.special_field_format_type|default:''} == "Payroll Upload"}selected="selected"{/if}>Payroll Upload</option>
+                        <option value="Date Format" {if {$search.special_field_format_type|default:''} == "Date Format"}selected="selected"{/if}>Date Format</option>
+                    </select>
+                    <input class="submit" name="search" type="submit" value="Display" />
+                    <input class="submit" name="search" type="submit" value="Reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<table class="table-view" width="100%">
+    <tr>
+        <th width="5%">No</th>
+        <th width="30%">Format Tanggal</th>
+        <th width="65%">Keterangan</th>
+    </tr>
+    <tr>
+        <td align="center">1.</td>
+        <td>yyyymmdd</td>
+        <td>Input harus sesuai (must match)</td>
+    </tr>
+    <tr>
+        <td align="center">2.</td>
+        <td>yymmdd</td>
+        <td>Input harus sesuai (must match)</td>
+    </tr>
+    <tr>
+        <td align="center">3.</td>
+        <td>yyyyddmm</td>
+        <td>Input harus sesuai (must match)</td>
+    </tr>
+    <tr>
+        <td align="center">4.</td>
+        <td>yyddmm</td>
+        <td>Input harus sesuai (must match)</td>
+    </tr>
+    <tr>
+        <td align="center">5.</td>
+        <td>ddmmyy</td>
+        <td>Input harus sesuai (must match)</td>
+    </tr>
+    <tr>
+        <td align="center">6.</td>
+        <td>ddmmyyyy</td>
+        <td>Input harus sesuai (must match)</td>
+    </tr>
+    <tr>
+        <td align="center">7.</td>
+        <td>dd/mm/yy</td>
+        <td>
+            Flexible length input
+            <ul>
+                <li>Delimiter adalah /</li>
+                <li>dd : 1 atau 2 digit</li>
+                <li>mm : 1 ,2, 3 digit atau nama panjang bulan Indonesia atau Inggris</li>
+                <li>yy : 2 atau 4 digit</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">8.</td>
+        <td>yy/mm/dd</td>
+        <td>
+            Flexible length input
+            <ul>
+                <li>Delimiter adalah /</li>
+                <li>dd : 1 atau 2 digit</li>
+                <li>mm : 1 ,2, 3 digit atau nama panjang bulan Indonesia atau Inggris</li>
+                <li>yy : 2 atau 4 digit</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">9.</td>
+        <td>yy/dd/mm</td>
+        <td>
+            Flexible length input
+            <ul>
+                <li>Delimiter adalah /</li>
+                <li>dd : 1 atau 2 digit</li>
+                <li>mm : 1 ,2, 3 digit atau nama panjang bulan Indonesia atau Inggris</li>
+                <li>yy : 2 atau 4 digit</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">10.</td>
+        <td>dd-mm-yy</td>
+        <td>
+            Flexible length input
+            <ul>
+                <li>Delimiter adalah /</li>
+                <li>dd : 1 atau 2 digit</li>
+                <li>mm : 1 ,2, 3 digit atau nama panjang bulan Indonesia atau Inggris</li>
+                <li>yy : 2 atau 4 digit</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">11.</td>
+        <td>yy-mm-dd</td>
+        <td>
+            Flexible length input
+            <ul>
+                <li>Delimiter adalah /</li>
+                <li>dd : 1 atau 2 digit</li>
+                <li>mm : 1 ,2, 3 digit atau nama panjang bulan Indonesia atau Inggris</li>
+                <li>yy : 2 atau 4 digit</li>
+            </ul>
+        </td>
+    </tr>
+    <tr>
+        <td align="center">12.</td>
+        <td>yy-dd-mm</td>
+        <td>
+            Flexible length input
+            <ul>
+                <li>Delimiter adalah /</li>
+                <li>dd : 1 atau 2 digit</li>
+                <li>mm : 1 ,2, 3 digit atau nama panjang bulan Indonesia atau Inggris</li>
+                <li>yy : 2 atau 4 digit</li>
+            </ul>
+        </td>
+    </tr>
+</table>

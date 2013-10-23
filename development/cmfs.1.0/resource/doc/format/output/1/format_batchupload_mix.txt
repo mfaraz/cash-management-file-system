@@ -1,0 +1,2 @@
+P;20110709;1050005478221;1;100;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+1540005262435;Test CMD;;;;IDR;100;Mix Inhouse1;;IBU;;Mandiri;;;;;Y;akhmad.siddik@bankmandiri.co.id;;;;;;;;;;;;;;;;;;;;;;;extended payment detail1

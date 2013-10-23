@@ -1,0 +1,55 @@
+<div class="head-content">
+    <h3>Format Output Review</h3>
+    <div class="clear"></div>
+</div>
+<div class="search-box">
+    <h3><a href="#" class="down">Search for type</a></h3>
+    <form action="{$config->site_url('output/cloutputversions/process_search')}" method="post">
+        <table class="table-search" width="100%">
+            <tr>
+                <th width="25%">Format Types</th>
+                <td width="75%">
+                    <select name="search_type">
+                        <option value="">-- all types --</option>
+                        <option value="Batch Upload" {if {$search.output_format_type|default:''} == "Batch Upload"}selected="selected"{/if}>Batch Upload</option>
+                        <option value="Single Mixed Upload" {if {$search.output_format_type|default:''} == "Single Mixed Upload"}selected="selected"{/if}>Single Mixed Upload</option>
+                    </select>
+                    <input class="submit" name="search" type="submit" value="Display" />
+                    <input class="submit" name="search" type="submit" value="Reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<table class="table-view" width="100%">
+    <tr>
+        <th width="5%">No</th>
+        <th width="25%">Output Versions</th>
+        <th width="15%">Format Type</th>
+        <th width="10%">File Type</th>
+        <th width="10%">Delimiter</th>
+        <th width="20%">Create Date</th>
+        <th width="10%"></th>
+    </tr>
+    {foreach from=$rs_list key=no item=result}
+    {$no = $no + 1}
+    <tr {if ($no % 2) == 0}class="blink-row"{/if}>
+        <td align="center">{$no}.</td>
+        <td>{$result.output_version}</td>
+        <td align="center">{$result.output_format_type}</td>
+        <td align="center">{$result.output_file_type}</td>
+        <td align="center">{$result.output_delimiter}</td>
+        <td align="center">{$result.create_date}</td>
+        <td align="center">
+            <a href="{$config->site_url({'output/cloutputversions/review/'|cat:$result.output_id|default:''})}" class="button-edit">Preview</a>
+        </td>
+    </tr>
+    {foreachelse}
+    <tr>
+        <td colspan="7">Data not found</td>
+    </tr>
+    {/foreach}
+</table>

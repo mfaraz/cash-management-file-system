@@ -1,0 +1,3 @@
+P;20111010;1030004571473;2;11900
+1216593223;Catra Wardana;;;;IDR;5300;Bulkpay RTGS;PTR 7 okt;RBU;BBBAIDJA;Permata;;;;;;Catra.Wardana@bankmandiri.co.id;;;;;;;;;;;;;;;;;;;;;OUR;;extended payment detail3;
+5720550841;Catra Wardana;;;;IDR;6600;BulkPay RTGS;PTR 7 Okt;RBU;CENAIDJA;BCA;;;;;;Catra.Wardana@bankmandiri.co.id;;;;;;;;;;;;;;;;;;;;;BEN;;extended payment detail4;

@@ -1,0 +1,63 @@
+<div class="head-content">
+    <h3>Daftar Format Input</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url('input/opinputversions')}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/edit/'|cat:$detail.input_id|default:'')}">Edit Versi</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/rows/'|cat:$detail.input_id|default:'')}">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url('input/opinputversions/upload/'|cat:$detail.input_id|default:'')}">Upload File</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/manage/'|cat:$detail.input_id|default:'')}">Pengaturan Field</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/mapping/'|cat:$detail.input_id|default:'')}">Pemetaan Field</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/review/'|cat:$detail.input_id|default:'')}" class="active">Format Review</a></li>
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+{if empty($rs_output_field)}
+<div class="notification red">
+    <p><strong>Warning :</strong></p>
+    <ul>
+        <li>Required fields have not been mapped</li>
+    </ul>
+</div>
+{elseif $finish_status eq 'false'}
+<div class="notification red">
+    <p><strong>Warning :</strong></p>
+    <ul>
+        <li>Required fields have not been mapped</li>
+    </ul>
+</div>
+{else}
+<div class="notification green">
+    <p><strong>Finish :</strong></p>
+    <ul>
+        <li>The new format is ready for use</li>
+    </ul>
+</div>
+<div class="button-nav-content">
+    <a href="{$config->site_url({'input/opimportupdate/export_to_excel/'|cat:$result.input_id})}"><img src="{$BASEURL}resource/doc/images/icon/export-icon.png" alt="" /> <b>Export Updates</b></a>
+    <div class="clear"></div>
+</div>
+{/if}
+<table class="table-view" width="100%">
+    <tr>
+        <th width="30%" colspan="2">{$result.output_version|default:''}</th>
+        <th width="40%">Description</th>
+        <th width="30%">{$result.input_version|default:''}</th>
+    </tr>
+    {foreach from=$rs_output_field key=no item=data}
+    <tr {if ($no % 2) <> 0}class="blink-row"{/if} {$data.style}>
+        <td width="5%" align="center">A{$data.field_number}</td>
+        <td width="25%">{$data.field_name}</td>
+        <td>{$data.field_desc}</td>
+        <td>{$data.mapping|default:''}</td>
+    </tr>
+    {foreachelse}
+    <tr>
+        <td colspan="6">Empty field</td>
+    </tr>
+    {/foreach}
+</table>

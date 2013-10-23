@@ -1,0 +1,16 @@
+REGEDIT4
+
+
+[HKEY_LOCAL_MACHINE\Software\GNU]
+
+[HKEY_LOCAL_MACHINE\Software\GNU\GNUPG]
+
+[HKEY_LOCAL_MACHINE\Software\GNU\GNUPG]
+"HomeDir"="E:\\public-softdev\\mcm\\development\\converter-operator.1.3\\resource\\doc\\encryption\\gpg\\key"
+"gpgProgram"="E:\\public-softdev\\mcm\\development\\converter-operator.1.3\\system\\plugins\\gpgengine\\gpg.exe"
+[HKEY_CURRENT_USER\Control Panel\Mingw32]
+
+[HKEY_CURRENT_USER\Control Panel\Mingw32\NLS]
+
+[HKEY_CURRENT_USER\Control Panel\Mingw32\NLS]
+"MODir"="E:\\public-softdev\\mcm\\development\\converter-operator.1.3\\system\\plugins\\gpgengine\\Locale"

@@ -1,0 +1,77 @@
+<div class="head-content">
+    <h3>Daftar Format Input</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url('input/opinputversions')}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/edit/'|cat:$detail.input_id|default:'')}">Edit Versi</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/rows/'|cat:$detail.input_id|default:'')}">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url('input/opinputversions/upload/'|cat:$detail.input_id|default:'')}">Upload File</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/manage/'|cat:$detail.input_id|default:'')}" class="active">Pengaturan Field</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/mapping/'|cat:$detail.input_id|default:'')}">Pemetaan Field</a></li>
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="table-info-box">
+    <h3>Detail Format</h3>
+    <table class="table-info" width="100%">
+        <tr>
+            <td width="25%">Versi Format Input<br /><em>Input Versions</em> </td>
+            <td width="25%"><b>{$result.input_version|default:''}</b></td>
+            <td width="25%">Versi Format Output<br /><em>Output Versions</em> </td>
+            <td width="25%"><b>{$result.output_version|default:''}</b></td>
+        </tr>
+        <tr>
+            <td>Jenis Format <br /><em>Format Type</em> </td>
+            <td><b>{$result.input_format_type|default:''}</b></td>
+            <td>Jenis File <br /><em>File Type</em> </td>
+            <td><b>{$result.input_file_type|default:''}</b></td>
+        </tr>
+        <tr>
+            <td>Baris Mulai <br /><em>Start Row</em> </td>
+            <td><b>{$detail.input_row|default:''}</b></td>
+            <td>Pemisah <br /><em>Delimiter</em> </td>
+            <td><b>{$detail.input_delimiter|default:''}</b></td>
+        </tr>
+        <tr>
+            <td>File Input <br /><em>Input File</em> </td>
+            <td colspan="3"><a href="{$config->site_url('input/opinputversions/download_input/'|cat:$detail.input_id|default:'')}">{$detail.input_file_path|default:''}</a></td>
+        </tr>
+    </table>
+</div>
+<div class="clear"></div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('input/opinputversions/process_manage')}" method="post">
+    <input type="hidden" name="input_id" value="{$result.input_id|default:''}" />
+    <table class="table-view" width="100%">
+        <tr>
+            <th width="5%">No</th>
+            <th width="25%">Read Value</th>
+            <th width="30%">Field Name</th>
+            <th width="40%">Field Description</th>
+        </tr>
+        {foreach from=$rs_data key=no item=data}
+        <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+            <td>{$no}.</td>
+            <td>{$data.value}</td>
+            <td align="center">
+                <input type="hidden" name="no[{$no}]" value="{$no}" />
+                <input type="text" name="field_name[{$no}]" value="{$data.name}" maxlength="45" size="40" />
+            </td>
+            <td align="center"><input type="text" name="field_desc[{$no}]" value="{$data.desc}" maxlength="255" size="55" /> </td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="4">Empty file</td>
+        </tr>
+        {/foreach}
+        <tr>
+            <td colspan="4"><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+</form>

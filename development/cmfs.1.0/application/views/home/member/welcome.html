@@ -1,0 +1,70 @@
+<!-- javascript -->
+<script type="text/javascript">
+    $(function() {
+        $(".checked-all").click(function(){
+            var status = $(this).attr("checked");
+            $(".check-one").attr('checked', status);
+        });
+    })
+</script>
+<div class="table-info-box">
+    <h3>Application Info</h3>
+    <table class="table-info" width="100%">
+        <tr>
+            <td width="25%">Version</td>
+            <td width="75%">
+                <b>Cash Management File System 1.0</b>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Support
+            </td>
+            <td>
+                <b>Please call 021-XXXXXX<br />
+                    or fax 021 XXXXXX<br />
+                    or email us at cm.operation@mail.com</b>
+            </td>
+        </tr>
+        <tr>
+            <td>Website</td>
+            <td><b><a href="#" onClick="window.open('#','mywindow','width=700,height=500,toolbar=yes, location=yes,directories=yes,status=yes,menubar=yes,scrollbars=yes,copyhistory=yes, resizable=yes')">Cash Management File System</a></b></td>
+        </tr>
+    </table>
+</div>
+<div class="head-content">
+    <h3>History Convert File</h3>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('home/memberwelcome/process_delete')}" method="post">
+    <table class="table-view" width="100%">
+        <tr>
+            <th width="5%"><input type="checkbox" class="checked-all"/></th>
+            <th width="15%">Date</th>
+            <th width="20%">Input Versions</th>
+            <th width="20%">File Input</th>
+            <th width="20%">Output Versions</th>
+            <th width="20%">File Output</th>
+        </tr>
+        {foreach from=$rs_id key=no item=result}
+        <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+            <td align="center"><input class="check-one" type="checkbox" name="history[]" value="{$result.convert_date}" /></td>
+            <td align="center">{$result.convert_date}</td>
+            <td align="center">{$result.input_version}</td>
+            <td align="center"><a href="{$BASEURL}{$result.convert_file_input}" class="button-edit" target="_blank">Download Input</a></td>
+            <td align="center">{$result.output_version}</td>
+            <td align="center"><a href="{$BASEURL}{$result.convert_file_output}" class="button-edit" target="_blank">Download Output</a></td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="6">Data not found</td>
+        </tr>
+        {/foreach}
+        <tr>
+            <td colspan="6"><input type="submit" value="Delete" /></td>
+        </tr>
+    </table>
+</form>

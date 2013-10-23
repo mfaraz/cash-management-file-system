@@ -1,0 +1,86 @@
+<div class="head-content">
+    <h3>Import Updates</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url({'output/opimportupdate'})}">Upload File</a></li>
+        <li><a href="{$config->site_url({'output/opimportupdate/update'})}" class="active">Review File</a></li>
+    </ul>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('output/opimportupdate/process_update')}" method="post">
+    <input type="hidden" value="{$rs_output.0|default:''}" name="output_id"/>
+    <input type="hidden" value="{$file_name|default:''}" name="file_name"/>
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="4">Import Data</th>
+        </tr>
+        <tr>
+            <td width="25%">Versi Format Output<br /> <em>Output Versions</em></td>
+            <td width="25%">{$rs_output.1|default:''}</td>
+            <td width="25%">Jenis Format Output<br /> <em>Format Type</em></td>
+            <td width="25%">{$rs_output.2|default:''}</td>
+        </tr>
+        <tr>
+            <td>Jenis File Output<br /> <em>File Type</em></td>
+            <td>{$rs_output.3|default:''}</td>
+            <td>Baris Mulai<br /> <em>Start Row</em></td>
+            <td>{$rs_output.4|default:''}</td>
+        </tr>
+        <tr>
+            <td>Pemisah<br /> <em>Delimiter</em></td>
+            <td>{$rs_output.5|default:''}</td>
+        </tr>
+    </table>
+    <table class="table-input" width="100%">
+        <tr>
+            <th width="50%">Baris Ke</th>
+            <th width="50%">Jumlah Kolom</th>
+        </tr>
+        {foreach from=$rows key=no item=data}
+        <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+            <td>{$data.1}</td>
+            <td>{$data.2}</td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="2">Empty file</td>
+        </tr>
+        {/foreach}
+    </table>
+    <table class="table-input" width="100%">
+        <tr>
+            <th width="5%">No</th>
+            <th width="15%">Field Name</th>
+            <th width="25%">Field Description</th>
+            <th width="10%">Field Mandatory</th>
+            <th width="10%">Field Length</th>
+            <th width="10%">Field Type</th>
+            <th width="10%">Field Special</th>
+            <th width="15%">Default Value</th>
+        </tr>
+        {foreach from=$fields key=no item=field}
+        <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+            <td>{$field.0|default:''}</td>
+            <td>{$field.2|default:''}</td>
+            <td>{$field.3|default:''}</td>
+            <td>{$field.4|default:''}</td>
+            <td>{$field.5|default:''}</td>
+            <td>{$field.6|default:''}</td>
+            <td>{$field.1|default:''}</td>
+            <td>{$field.7|default:''}</td>
+        </tr>
+        {foreachelse}
+        <tr>
+            <td colspan="8">Empty file</td>
+        </tr>
+        {/foreach}
+        <tr>
+            <td colspan="8"><input type="submit" value="Save" /></td>
+        </tr>
+    </table>
+</form>

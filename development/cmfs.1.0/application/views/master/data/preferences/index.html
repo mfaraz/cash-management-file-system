@@ -1,0 +1,46 @@
+<div class="head-content">
+    <h3>Preferences</h3>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('master/preferences/process_update')}" method="post">
+    <table class="table-input" width="100%">
+        <tr>
+            <th colspan="2">Pengaturan Variabel Khusus</th>
+        </tr>
+        <tr>
+            <td width="25%">Remove Special Character</td>
+            <td width="75%"><input type="text" name="special_char" size="45" value="{$special_char|default:''}"/> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td>Limit Maksimum LLG</td>
+            <td><input type="text" name="nominal_parameter" size="45" value="{$nominal_parameter|default:''}"/> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td>Limit Bank Name</td>
+            <td><input type="text" name="bank_name" size="45" value="{$bank_name|default:''}"/> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td>Inhouse Code</td>
+            <td><input type="text" name="inhouse_code" size="45" value="{$inhouse_code|default:''}"/> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td>Clearing Code </td>
+            <td><input type="text" name="clearing_code" size="45" value="{$clearing_code|default:''}"/> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td>RTGS Code</td>
+            <td><input type="text" name="rtgs_code" size="45" value="{$rtgs_code|default:''}"/> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td>International Code</td>
+            <td><input type="text" name="international_code" size="45" value="{$international_code|default:''}"/> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Save" /> </td>
+        </tr>
+    </table>
+</form>

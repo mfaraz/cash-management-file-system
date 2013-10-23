@@ -1,0 +1,118 @@
+{literal}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.info-field').tipsy({
+            gravity: 's',
+            opacity: 1,
+            fade: true,
+            delayIn: 0,
+            trigger: 'focus'
+        });
+    });
+</script>
+{/literal}
+<div class="head-content">
+    <h3>Daftar Format Input</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url('input/opinputversions')}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/edit/'|cat:$detail.input_id|default:'')}">Edit Versi</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/rows/'|cat:$detail.input_id|default:'')}">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url('input/opinputversions/upload/'|cat:$detail.input_id|default:'')}">Upload File</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/manage/'|cat:$detail.input_id|default:'')}">Pengaturan Field</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/mapping/'|cat:$detail.input_id|default:'')}" class="active">Pemetaan Field</a></li>
+        {if $preview_status eq 'true'}
+        <li><a href="{$config->site_url('input/opinputversions/review/'|cat:$detail.input_id|default:'')}">Format Review</a></li>
+        {/if}
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="table-info-box">
+    <h3>Keterangan</h3>
+    <table class="table-info" width="100%">
+        <tr>
+            <td>Gunakan tanda <b>; (titik koma)</b> untuk memisahkan index jika field yang dipetakan memiliki relasi lebih dari satu! <b>Merge Field</b> </td>
+        </tr>
+        <tr>
+            <td>Contoh : <b style="color: #E61120;">B2;B5;B7</b></td>
+        </tr>
+        <tr>
+            <td>Gunakan format berikut <b>index (start, max) </b> untuk mengambil nilai dalam jangkauan tertentu dari sebuah field! <b>Split Field</b></td>
+        </tr>
+        <tr>
+            <td>Contoh : <b style="color: #E61120;">B2(1,10)</b> yang artinya dipetakan pada field B2 dimulai dari karakter pertama sampai 10 karakter selanjutnya.</td>
+        </tr>
+        <tr>
+            <td>Setiap field output yang merupakan mandatory dan tidak memiliki nilai default wajib dipetakan kedalam index field inputnya!</td>
+        </tr>
+    </table>
+</div>
+<div class="clear"></div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('input/opinputversions/process_mapping')}" method="post">
+    <input type="hidden" name="input_id" value="{$result.input_id|default:''}" />
+    <input type="hidden" name="output_id" value="{$result.output_id|default:''}" />
+    <div class="content-left">
+        <table class="table-input" width="100%">
+            <tr class="headrow">
+                <th colspan="4">FORMAT OUTPUT : {$result.output_version|default:''}</th>
+            </tr>
+            <tr>
+                <th width="10%" align="center">OUTPUT INDEX</th>
+                <th width="45%" align="center">OUTPUT FIELD NAME</th>
+                <th width="40%" align="center">OUTPUT MAPPING</th>
+                <th width="5%" align="center"></th>
+            </tr>
+            {foreach from=$rs_output_field key=no item=data}
+            <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+                <td align="center"><b>A{$no}</b></td>
+                <td>{$data.field_name}</td>
+                <td align="center">
+                    <input type="text" name="map[{$data.field_number}]" size="15" maxlength="40" value="{$data.mapping|default:''}" {$data.style|default:''} style="text-align: center;"  />
+                </td>
+                <td align="center">
+                    <a href="#" class="info-field" original-title="{$data.special_desc}" onclick="return false;"><img src="{$BASEURL}resource/doc/images/icon/help.png" alt="" /> </a>
+                </td>
+            </tr>
+            {foreachelse}
+            <tr>
+                <td colspan="4">Empty field</td>
+            </tr>
+            {/foreach}
+            <tr>
+                <td colspan="4">
+                    <p align="center">
+                        <input type="submit" value="Save Mapping" />
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="content-right">
+        <table class="table-input" width="100%">
+            <tr class="headrow">
+                <th colspan="3">FORMAT INPUT : {$result.input_version|default:''}</th>
+            </tr>
+            <tr>
+                <th width="15%" align="center">INPUT INDEX</th>
+                <th width="85%" align="center">INPUT FIELD NAME</th>
+            </tr>
+            {foreach from=$rs_input_field key=no item=data}
+            <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+                <td align="center"><b>B{$no + 1}</b></td>
+                <td style="padding: 8px 4px 7px 4px;">{$data.field_name}</td>
+            </tr>
+            {foreachelse}
+            <tr>
+                <td colspan="2">Empty field</td>
+            </tr>
+            {/foreach}
+        </table>
+    </div>
+</form>

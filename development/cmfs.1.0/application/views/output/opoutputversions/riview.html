@@ -1,0 +1,69 @@
+<div class="head-content">
+    <h3>Daftar Format Output</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url({'output/opoutputversions'})}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/edit/'|cat:$detail.output_id|default:''})}">Edit Versi</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/rows/'|cat:$detail.output_id|default:''})}">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url({'output/opoutputversions/upload/'|cat:$detail.output_id|default:''})}">Upload File</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/manage/'|cat:$detail.output_id|default:''})}">Pengaturan Field</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/review/'|cat:$detail.output_id|default:''})}" class="active">Format Review</a></li>
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+{if !empty($rs_list)}
+<div class="notification green">
+    <p><strong>Finish :</strong></p>
+    <ul>
+        <li>The new format is ready for use</li>
+    </ul>
+</div>
+<div class="button-nav-content">
+    <a href="{$config->site_url({'output/opimportupdate/export_to_excel/'|cat:$detail.output_id})}"><img src="{$BASEURL}resource/doc/images/icon/export-icon.png" alt="" /> Export Updates</a>
+    <div class="clear"></div>
+</div>
+{else}
+<div class="notification red">
+    <p><strong>Warning :</strong></p>
+    <ul>
+        <li>Required fields have not been fullfilled</li>
+    </ul>
+</div>
+{/if}
+<table class="table-view" width="100%">
+    <tr>
+        <th width="5%">No</th>
+        <th width="18%">Field Name</th>
+        <th width="22%">Field Description</th>
+        <th width="10%">Field Required</th>
+        <th width="10%">Field Length</th>
+        <th width="10%">Field Type</th>
+        <th width="15%">Field Default Value</th>
+        <th width="10%">Spesial Field</th>
+    </tr>
+    {foreach from=$rs_list key=no item=result}
+    <tr {if ($no % 2) == 0}class="blink-row"{/if}>
+        <td align="center">{$no+1}.</td>
+        <td>{$result.field_name}</td>
+        <td>{$result.field_desc}</td>
+        <td align="center">{if {$result.field_required|default:''} == "no"}No{else}Yes{/if}</td>
+        <td align="center">{$result.field_length}</td>
+        <td align="center">{if {$result.field_type|default:''} == "numeric"}Numeric{else}Text{/if}</td>
+        <td>{$result.field_default_value}</td>
+        <td align="center">
+            {foreach from=$rs_special_fl item=special_fl}
+            {if {$result.special_cd|default:''} == {$special_fl.special_cd}}{$special_fl.special_nm}{/if}
+            {/foreach}
+        </td>
+    </tr>
+    {foreachelse}
+    <tr>
+        <td colspan="8">Data not found</td>
+    </tr>
+    {/foreach}
+</table>
+

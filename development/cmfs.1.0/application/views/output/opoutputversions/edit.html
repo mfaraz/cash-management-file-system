@@ -1,0 +1,60 @@
+<div class="head-content">
+    <h3>Daftar Format Output</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url({'output/opoutputversions'})}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/edit/'|cat:$detail.output_id|default:''})}" class="active">Edit Versi</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/rows/'|cat:$detail.output_id|default:''})}">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url({'output/opoutputversions/upload/'|cat:$detail.output_id|default:''})}">Upload File</a></li>
+        <li><a href="{$config->site_url({'output/opoutputversions/manage/'|cat:$detail.output_id|default:''})}">Pengaturan Field</a></li>
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('output/opoutputversions/process_edit')}" method="post">
+    <input type="hidden" name="output_id" value="{$detail.output_id|default:''}" />
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Edit Versi</th>
+        </tr>
+        <tr>
+            <td width="25%">Versi Format Output<br /><em>Output Versions</em> </td>
+            <td width="75%">
+                <input type="text" name="output_version" value="{$result.output_version|default:''}" size="30" maxlength="30" /> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Jenis Format Output<br /><em>Format Type</em> </td>
+            <td>
+                <select name="output_format_type">
+                    <option value=""></option>
+                    <option value="Batch Upload" {if {$result.output_format_type|default:''} == "Batch Upload"}selected="selected"{/if}>Batch Upload</option>
+                    <option value="Single Mixed Upload" {if {$result.output_format_type|default:''} == "Single Mixed Upload"}selected="selected"{/if}>Single Mixed Upload</option>
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Jenis File Output<br /><em>File Type</em> </td>
+            <td>
+                <select name="output_file_type">
+                    <option value=""></option>
+                    <option value="txt" {if {$result.output_file_type|default:''} == "txt"}selected="selected"{/if}>Text</option>
+                    <option value="csv" {if {$result.output_file_type|default:''} == "csv"}selected="selected"{/if}>CSV</option>
+                    <option value="xls" {if {$result.output_file_type|default:''} == "xls"}selected="selected"{/if}>Excel 2003</option>
+                    <option value="xlsx" {if {$result.output_file_type|default:''} == "xlsx"}selected="selected"{/if}>Excel 2007</option>
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Save" /> </td>
+        </tr>
+    </table>
+</form>

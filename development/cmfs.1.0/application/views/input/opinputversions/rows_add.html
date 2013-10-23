@@ -1,0 +1,64 @@
+<div class="head-content">
+    <h3>Daftar Format Input</h3>
+    <div class="clear"></div>
+</div>
+<div class="sub-nav-content">
+    <ul>
+        <li><a href="{$config->site_url('input/opinputversions')}">&lt;&lt; Kembali ke daftar</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/edit/'|cat:$detail.input_id|default:'')}">Edit Versi</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/rows/'|cat:$result.input_id|default:'')}" class="active">Pengaturan Baris</a></li>
+        {if !empty($jumlah_baris)}
+        <li><a href="{$config->site_url('input/opinputversions/upload/'|cat:$result.input_id|default:'')}">Upload File</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/manage/'|cat:$result.input_id|default:'')}">Pengaturan Field</a></li>
+        <li><a href="{$config->site_url('input/opinputversions/mapping/'|cat:$result.input_id|default:'')}">Pemetaan Field</a></li>
+        {/if}
+    </ul>
+    <div class="clear"></div>
+</div>
+<div class="table-info-box">
+    <h3>Detail Format</h3>
+    <table class="table-info" width="100%">
+        <tr>
+            <td width="25%">Versi Format Input<br /><em>Input Versions</em> </td>
+            <td width="25%"><b>{$result.input_version|default:''}</b></td>
+            <td width="25%">Versi Format Output<br /><em>Output Versions</em> </td>
+            <td width="25%"><b>{$result.output_version|default:''}</b></td>
+        </tr>
+        <tr>
+            <td>Jenis Format <br /><em>Format Type</em> </td>
+            <td><b>{$result.input_format_type|default:''}</b></td>
+            <td>Jenis File <br /><em>File Type</em> </td>
+            <td><b>{$result.input_file_type|default:''}</b></td>
+        </tr>
+    </table>
+</div>
+<div class="clear"></div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('input/opinputversions/process_rows_add')}" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="input_id" value="{$result.input_id|default:''}" />
+    <div class="button-nav-content">
+        <a href="{$config->site_url('input/opinputversions/rows/'|cat:$result.input_id|default:'')}">List Data</a>
+        <a href="{$config->site_url('input/opinputversions/rows_add/'|cat:$result.input_id|default:'')}" class="active"><img src="{$BASEURL}resource/doc/images/icon/add-icon.png" alt="" /> Add New</a>
+        <div class="clear"></div>
+    </div>
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Add Rows</th>
+        </tr>
+        <tr>
+            <td width="25%">Nomor Baris<br /><em>Row Number</em> </td>
+            <td width="75%"><input type="text" name="row_number" value="{$field.row_number|default:''}" size="4" maxlength="4" /> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Jumlah Kolom <br /><em>Column Number</em> </td>
+            <td><input type="text" name="total_column" value="{$field.total_column|default:''}" size="4" maxlength="4" /> * <em>required</em></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Save" /> </td>
+        </tr>
+    </table>
+</form>

@@ -1,0 +1,46 @@
+<div class="head-content">
+    <h3>Tambah Format Output Baru</h3>
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<form action="{$config->site_url('output/opnewformat/process_create')}" method="post">
+    <table class="table-input" width="100%">
+        <tr class="headrow">
+            <th colspan="2">Create Form</th>
+        </tr>
+        <tr>
+            <td width="25%">Versi Format Output<br /><em>Output Versions</em> </td>
+            <td width="75%"><input type="text" name="output_version" maxlength="30" size="30" value="{$result.output_version|default:''}" /> * <em>required</em> </td>
+        </tr>
+        <tr>
+            <td>Jenis Format Output<br /><em>Format Type</em> </td>
+            <td>
+                <select name="output_format_type">
+                    <option></option>
+                    <option value="Batch Upload" {if {$result.output_format_type|default:''} == "Batch Upload"}selected="selected"{/if}>Batch Upload</option>
+                    <option value="Single Mixed Upload" {if {$result.output_format_type|default:''} == "Single Mixed Upload"}selected="selected"{/if}>Single Mixed Upload</option>
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td>Jenis File Output<br /><em>File Type</em> </td>
+            <td>
+                <select name="output_file_type">
+                    <option value=""></option>
+                    <option value="txt" {if {$result.output_file_type|default:''} == "txt"}selected="selected"{/if}>Text</option>
+                    <option value="csv" {if {$result.output_file_type|default:''} == "csv"}selected="selected"{/if}>CSV</option>
+                    <option value="xls" {if {$result.output_file_type|default:''} == "xls"}selected="selected"{/if}>Excel 2003</option>
+                    <option value="xlsx" {if {$result.output_file_type|default:''} == "xlsx"}selected="selected"{/if}>Excel 2007</option>
+                </select> * <em>required</em>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" name="save" value="Save &amp Next" /></td>
+        </tr>
+    </table>
+</form>
+
+

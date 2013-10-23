@@ -1,0 +1,65 @@
+<div class="head-content">
+    <h3>Data Bank</h3>
+    <div class="head-content-nav">
+        <ul>
+            {if $file_export eq 'show'}
+            <li><a href="{$config->site_url('master/bank/process_export')}"><img src="{$BASEURL}resource/doc/images/icon/export-icon.png" alt="" /> Export Data</a></li>
+            {/if}
+            <li><a href="{$config->site_url('master/bank/import')}"><img src="{$BASEURL}resource/doc/images/icon/import-icon.png" alt="" /> Import Data</a></li>
+            <li><a href="{$config->site_url('master/bank')}" class="active">List Data</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="search-box">
+    <h3><a href="#" class="down">Search</a></h3>
+    <form action="{$config->site_url('master/bank/process_search')}" method="post">
+        <table class="table-search" width="100%">
+            <tr>
+                <th width="25%">Nama Bank</th>
+                <td width="75%">
+                    <input name="search_bank_name" type="text" size="30" maxlength="50" value="{$search_bank_name|default:''}" />
+                    <input class="submit" name="search" type="submit" value="View" />
+                    <input class="submit" name="search" type="submit" value="Reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div class="pageRow">
+    <div class="pageNav">
+        <ul>
+            <li class="info"><strong>{$pagination.start|default:'0'} - {$pagination.end|default:'0'}</strong> dari <strong>{$pagination.total|default:'0'}</strong> Data</li>
+            {$pagination.data|default:''}
+        </ul>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<table class="table-view" width="100%">
+    <tr>
+        <th width="5%">No</th>
+        <th width="30%">Nama Bank</th>
+        <th width="15%">Keyword</th>
+        <th width="17.5%">Kode RTGS</th>
+        <th width="15%">Kode Kliring</th>
+        <th width="17.5%">Kode Internasional</th>
+    </tr>
+    {foreach from=$rs_id item=data}
+    <tr {if ($no % 2) <> 0}class="blink-row"{/if}>
+        <td>{$no++}.</td>
+        <td>{$data.bank_name}</td>
+        <td>{$data.bank_keyword}</td>
+        <td align="center">{$data.rtgs_code}</td>
+        <td align="center">{$data.kliring_code}</td>
+        <td align="center">{$data.int_code}</td>
+    </tr>
+    {foreachelse}
+    <tr>
+        <td colspan="5">Data not found</td>
+    </tr>
+    {/foreach}
+</table>

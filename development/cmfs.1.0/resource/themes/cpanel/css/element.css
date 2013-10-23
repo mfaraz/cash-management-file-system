@@ -1,0 +1,208 @@
+/* CSS Document */
+/* created by chow-2011 */
+
+/* search box */
+
+.search-box {
+    margin: 0 0 5px 0;
+    padding: 10px;
+    background-image: url('../img/search-box-bg.png');
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-color: #E6ECF1;
+    border: 1px solid #DAE4EC;
+}
+
+.search-box h3 {
+    margin: 0 0 10px 0;
+    padding: 0;
+    font-size: 12px;
+    font-family: tahoma;
+    color: #454545;
+}
+
+.search-box h3 a{
+    margin: 0;
+    padding: 0 0 0 20px;
+    text-decoration: none;
+    color: #454545;
+    background-image: url('../img/search-box-h3-right.gif');
+    background-position: center left;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+.search-box h3 a.down{
+    margin: 0;
+    padding: 0 0 0 20px;
+    text-decoration: none;
+    color: #454545;
+    background-image: url('../img/search-box-h3-down.gif');
+    background-position: center left;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+/* Notification ==========================================================*/
+
+.notification {
+    margin: 0 0 5px 0;
+    padding: 3px 5px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-family: arial;
+}
+
+.notification strong {
+    margin: 0;
+    padding: 0;
+}
+
+.notification p {
+    margin: 2px 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+.notification ul {
+    margin: 0;
+    padding: 0;
+}
+
+.notification li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 12px;
+}
+
+.notification.red {
+    background-image: url("../img/alert-message-warning-bg.png");
+    background-position: top left;
+    background-repeat: repeat-x;
+    background-color: #C63E37;
+    border: 1px solid #C63E37;
+}
+
+.notification.red p {
+    color: #fff;
+}
+
+.notification.red li {
+    color: #fff;
+}
+
+.notification.green {
+    background-image: url("../img/alert-message-success-bg.png");
+    background-position: top left;
+    background-repeat: repeat-x;
+    background-color: #EFDD96;
+    border: 1px solid #DFC560;
+}
+
+.notification.green p {
+    color: #333;
+}
+
+.notification.green li {
+    color: #333;
+}
+
+/* Pagination */
+
+.pageRow {
+    margin: 0 0 5px 0;
+    padding: 0;
+    font-size: 11px;
+    width: 100%;
+    clear: both;
+}
+
+.pageNav {
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.pageNav ul {
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+
+.pageNav li {
+    float: left;
+    margin: 0 0 0 2px;
+    padding: 0;
+    color: #686869;
+    list-style: none;
+}
+
+.pageNav li.info {
+    padding: 3px 5px 0 0;
+}
+
+.pageNav a {
+    margin: 0;
+    padding: 3px 0 2px 0;
+    color: #3B5998;
+    text-decoration: none;
+    height: 19px;
+    width: 24px;
+    background-image: url("../img/pagination-bg.png");
+    font-size: 11px;
+    text-align: center;
+    display: block;
+}
+
+.pageNav a:hover {
+    background-image: url("../img/pagination-bg-hover.png");
+    text-decoration: none;
+}
+
+.pageNav a.active {
+    color: #000;
+    font-weight: bold;
+    background-image: url("../img/pagination-bg-active.png");
+}
+
+.pageNav a.special {
+    background-image: none;
+}
+
+.pageNav a.special:hover {
+    text-decoration: underline;
+    color: #2157C9;
+}
+
+.pageNav p {
+    margin: 0;
+    padding: 0;
+    color: #686869;
+}
+
+.pageNav p strong {
+    color: #536aa5;
+}
+
+.pageNav input {
+    margin: 3px 0 0 0;
+    padding: 1px;
+    font-size: 11px;
+    text-align: center;
+}
+
+/* tipsy */
+.tipsy { padding: 5px; font-size: 10px; position: absolute; z-index: 100000; }
+.tipsy-inner { padding: 5px 8px 4px 8px; background-color: black; color: white; max-width: 200px; text-align: center; }
+.tipsy-inner { border-radius: 3px; -moz-border-radius:3px; -webkit-border-radius:3px; }
+.tipsy-arrow { position: absolute; background: url('../img/tipsy.gif') no-repeat top left; width: 9px; height: 5px; }
+.tipsy-n .tipsy-arrow { top: 0; left: 50%; margin-left: -4px; }
+.tipsy-nw .tipsy-arrow { top: 0; left: 10px; }
+.tipsy-ne .tipsy-arrow { top: 0; right: 10px; }
+.tipsy-s .tipsy-arrow { bottom: 0; left: 50%; margin-left: -4px; background-position: bottom left; }
+.tipsy-sw .tipsy-arrow { bottom: 0; left: 10px; background-position: bottom left; }
+.tipsy-se .tipsy-arrow { bottom: 0; right: 10px; background-position: bottom left; }
+.tipsy-e .tipsy-arrow { top: 50%; margin-top: -4px; right: 0; width: 5px; height: 9px; background-position: top right; }
+.tipsy-w .tipsy-arrow { top: 50%; margin-top: -4px; left: 0; width: 5px; height: 9px; }

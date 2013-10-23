@@ -1,0 +1,53 @@
+<div class="head-content">
+    <h3>Special Field</h3>
+    <div class="head-content-nav">
+        <ul>
+            <li><a href="#"  class="active">List Data</a></li>
+        </ul>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="search-box">
+    <h3><a href="#" class="down">Search for type</a></h3>
+    <form action="{$config->site_url('output/specialfield/process_search')}" method="post">
+        <table class="table-search" width="100%">
+            <tr>
+                <th width="25%">Format Types</th>
+                <td width="75%">
+                    <select name="search_type">
+                        <option value="">-- all types --</option>
+                        <option value="Batch Upload" {if {$search.special_field_format_type|default:''} == "Batch Upload"}selected="selected"{/if}>Batch Upload</option>
+                        <option value="Single Mixed Upload" {if {$search.special_field_format_type|default:''} == "Single Mixed Upload"}selected="selected"{/if}>Single Mixed Upload</option>
+                        <option value="Date Format" {if {$search.special_field_format_type|default:''} == "Date Format"}selected="selected"{/if}>Date Format</option>
+                    </select>
+                    <input class="submit" name="search" type="submit" value="Display" />
+                    <input class="submit" name="search" type="submit" value="Reset" />
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<!-- notification template -->
+{include file="base/templates/notification.html"}
+<!-- end of notification template-->
+<table class="table-view" width="100%">
+    <tr>
+        <th width="5%">No</th>
+        <th width="15%">Kode</th>
+        <th width="25%">Nama</th>
+        <th width="55%">Keterangan</th>
+    </tr>
+    {foreach from=$rs_field key=no item=result}
+    {$no = $no + 1}
+    <tr {if ($no % 2) == 0}class="blink-row"{/if}>
+        <td align="center">{$no++}.</td>
+        <td align="center">{$result.special_cd}</td>
+        <td>{$result.special_nm}</td>
+        <td>{$result.special_desc}</td>
+    </tr>
+    {foreachelse}
+    <tr>
+        <td colspan="4">Data not found</td>
+    </tr>
+    {/foreach}
+</table>
